@@ -33,4 +33,6 @@
          editview=".navigationextendedportlet.EditForm"
          />
 
+     <adapter factory=".simplenavigationportlet.NavigationExtendedQueryBuilder" /> 
+
 </configure>
