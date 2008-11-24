@@ -9,7 +9,7 @@
 
     <genericsetup:registerProfile
        name="default"
-       title="Navigation Extended"
+       title="Portlet Navigation Extended"
        directory="profiles/default"
        description="Plone3 navigation portlet extended"
        provides="Products.GenericSetup.interfaces.EXTENSION"
