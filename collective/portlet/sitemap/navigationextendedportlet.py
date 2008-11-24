@@ -48,7 +48,7 @@ class Assignment(navigation.Assignment):
 
     implements(INavigationExtendedPortlet)
         
-    title = _(u'Simple Navigation')
+    title = _(u'Navigation Extended')
     
     name = u""
     root = None
@@ -80,7 +80,6 @@ class Renderer(navigation.Renderer):
     of this class. Other methods can be added and referenced in the template.
     """
 
-    #render = ViewPageTemplateFile('simplenavigationportlet.pt')
     
     @memoize
     def getNavTree(self, _marker=[]):
