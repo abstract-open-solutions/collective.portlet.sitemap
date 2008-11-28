@@ -1,8 +1,15 @@
 Changelog
 =========
 
-1.0.0 - Unreleased
-----------------
+1.0.1
+-----
+
+* add assignments in portlets GS profile 
+  replace standard navigation portlet
+
+
+1.0.0 
+-----
 
 * Initial release
 
