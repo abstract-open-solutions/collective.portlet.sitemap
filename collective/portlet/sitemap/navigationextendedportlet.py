@@ -93,6 +93,8 @@ class Renderer(navigation.Renderer):
 
         return buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
 
+    
+    recurse = ViewPageTemplateFile('navigation_extended_recurse.pt')
 
 
 class AddForm(navigation.AddForm):
