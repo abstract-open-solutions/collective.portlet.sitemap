@@ -7,7 +7,10 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
-		<include package="Products.CMFCore" file="permissions.zcml" />
+	<!-- p4-compat AND p3-backwards-compat -->
+    <include package="Products.CMFCore" 
+             zcml:condition="have plone-41"
+             file="permissions.zcml" />
 
     <genericsetup:registerProfile
        name="default"

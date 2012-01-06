@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.3 (dev)
+-----------
+
+* added explicit permission for plone 4.1 and keep p3-backwards-compat
+
+
 1.0.2
 -----
 

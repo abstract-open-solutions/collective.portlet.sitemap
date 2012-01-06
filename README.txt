@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This portlet can replace standard plone 3 navigation portlet.
+This portlet can replace standard plone navigation portlet.
 
 The difference is :
 
