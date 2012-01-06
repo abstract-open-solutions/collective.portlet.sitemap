@@ -1,13 +1,14 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="collective.portlet.sitemap">
 
     <five:registerPackage package="." initialize=".initialize" />
 
-	<!-- p4-compat AND p3-backwards-compat -->
+    <!-- p4-compat AND p3-backwards-compat -->
     <include package="Products.CMFCore" 
              zcml:condition="have plone-41"
              file="permissions.zcml" />
