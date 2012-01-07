@@ -10,7 +10,7 @@
 
     <!-- p4-compat AND p3-backwards-compat -->
     <include package="Products.CMFCore" 
-             zcml:condition="have plone-41"
+             zcml:condition="have plone-4"
              file="permissions.zcml" />
 
     <genericsetup:registerProfile
