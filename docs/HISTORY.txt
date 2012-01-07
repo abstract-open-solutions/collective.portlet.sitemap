@@ -6,6 +6,8 @@ Changelog
 
 * added explicit permission for plone 4.1 and keep p3-backwards-compat [ida]
 
+* normalizeString-fallback for section-id's - p3 compat [ida]
+
 
 1.0.2
 -----
