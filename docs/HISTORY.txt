@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.0.4 (dev)
+1.0.4 (2012-02-01)
 -------------------
 
+* include auto-zcml-slug for standalone install [ida]
 
 
 1.0.3 (2012-02-01)

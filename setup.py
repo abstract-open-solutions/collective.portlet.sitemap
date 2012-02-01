@@ -32,5 +32,7 @@ setup(name='collective.portlet.sitemap',
       ],
       entry_points="""
       # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+            target = plone
       """,
       )
