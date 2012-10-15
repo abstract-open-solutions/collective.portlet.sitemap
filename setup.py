@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.4'
+version = '1.0.5'
 
 setup(name='collective.portlet.sitemap',
       version=version,
@@ -20,7 +20,7 @@ setup(name='collective.portlet.sitemap',
       keywords='plone portlet navigation',
       author='Ingeniweb',
       author_email='support@ingeniweb.com',
-      url='http://plone.org',
+      url='http://plone.org/products/collective.portlet.sitemap',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective', 'collective.portlet'],

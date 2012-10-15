@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.0.5 (2012-10-15)
+-------------------
+
+* fixed missing dollar-character in navigation_extended_recurse.pt [ida]
+
+* added product-homepage-address [ida]
+
 1.0.4 (2012-02-01)
 -------------------
 

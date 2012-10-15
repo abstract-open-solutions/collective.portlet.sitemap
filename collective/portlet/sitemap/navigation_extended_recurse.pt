@@ -19,7 +19,7 @@
                 li_folder_class python:show_children and ' navTreeFolderish' or '';
                 normalizeString nocall: context/plone_utils/normalizeString;
                 normalizedId    node/normalized_id|nothing;
-                sectionId       string: section-{normalizedId};"
+                sectionId       string: section-${normalizedId};"
     tal:attributes="class string:navTreeItem visualNoMarker${li_class}${li_extr_class}${li_folder_class} ${sectionId}"
     tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
 
