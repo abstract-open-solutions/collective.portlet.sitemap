@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.5'
+version = '1.0.6.dev0'
 
 setup(name='collective.portlet.sitemap',
       version=version,
@@ -14,6 +14,8 @@ setup(name='collective.portlet.sitemap',
         "Framework :: Plone :: 3.3",
         "Framework :: Plone :: 4.0",
         "Framework :: Plone :: 4.1",
+        "Framework :: Plone :: 4.2",
+        "Framework :: Plone :: 4.3",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
@@ -33,6 +35,6 @@ setup(name='collective.portlet.sitemap',
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
-            target = plone
+      target = plone
       """,
       )

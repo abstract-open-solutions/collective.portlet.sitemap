@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-05-10 14:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+msgid "A navigation portlet that can be displayed as a sitemap"
+msgstr "Una portlet di navigazione che può essere visualizzata come una mappa del sito"
+
+#: ../navigationextendedportlet.py:51
+msgid "Navigation Extended"
+msgstr "Navigazione Estesa"
+
+#. Default: "If checked display all folders as a site map"
+#: ../navigationextendedportlet.py:29
+msgid "help_display_as_site_map"
+msgstr "Se selezionato visualizza tutte le cartelle come una mappa del sito"
+
+#. Default: "If previous field is checked set the site map depth"
+#: ../navigationextendedportlet.py:37
+msgid "help_site_map_depth"
+msgstr "Se il campo precedente è selezionato, imposta la profondità della mappa del sito"
+
+#. Default: "Display as Site Map"
+#: ../navigationextendedportlet.py:28
+msgid "label_display_as_site_map"
+msgstr "Mostra come mappa del sito"
+
+#. Default: "Site map depth"
+#: ../navigationextendedportlet.py:35
+msgid "label_site_map_depth"
+msgstr "Profondità della mappa del sito"
+
