@@ -1,23 +1,24 @@
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts, getMultiAdapter
-
 from plone.memoize.instance import memoize
-
 from plone.app.portlets.portlets import navigation
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.navigation.navtree import buildFolderTree
-
 from zope import schema
 from zope.formlib import form
 from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
 from Products.CMFPlone import utils
-
 from collective.portlet.sitemap import NavigationExtendedPortletMessageFactory as _
+
+try:
+    from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
+except ImportError:
+    UberSelectionWidget = None
+    pass
 
 class INavigationExtendedPortlet(navigation.INavigationPortlet) :
     """A portlet
@@ -105,6 +106,8 @@ class AddForm(navigation.AddForm):
     constructs the assignment that is being added.
     """
     form_fields = form.Fields(INavigationExtendedPortlet)
+    if UberSelectionWidget is not None:
+        form_fields['root'].custom_widget = UberSelectionWidget
 
     def create(self, data):
         return Assignment(name=data.get('name', u""),
@@ -125,7 +128,9 @@ class EditForm(navigation.EditForm):
     zope.formlib which fields to display.
     """
     form_fields = form.Fields(INavigationExtendedPortlet)
-    
+    if UberSelectionWidget is not None:
+        form_fields['root'].custom_widget = UberSelectionWidget
+
 
 class INavigationExtendedQueryBuilder(INavigationQueryBuilder):
     """An object which returns a catalog query when called, used to 

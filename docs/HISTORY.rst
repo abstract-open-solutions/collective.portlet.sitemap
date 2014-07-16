@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.0.6 (Unreleased)
+1.1.0 (Unreleased)
 ------------------
 
 * Added i18n support [keul]
 * Added italian translation [keul]
+* Added MANIFEST [keul]
+* If ``UberSelectionWidget`` from plone.app.form is available: use it.
+  This will replace the embarrassing Plone default widget [keul]
 
 1.0.5 (2012-10-15)
 -------------------
