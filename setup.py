@@ -6,8 +6,8 @@ version = '1.0.6.dev0'
 setup(name='collective.portlet.sitemap',
       version=version,
       description="A Plone navigation portlet that can be displayed as a sitemap",
-      long_description=open("README.py").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.py")).read(),
+      long_description=open("README.rst").read() + "\n" +
+                       open(os.path.join("docs", "HISTORY.rst")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
