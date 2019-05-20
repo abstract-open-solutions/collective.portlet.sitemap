@@ -14,11 +14,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import utils
 from collective.portlet.sitemap import NavigationExtendedPortletMessageFactory as _
 
-try:
-    from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
-except ImportError:
-    UberSelectionWidget = None
-    pass
 
 class INavigationExtendedPortlet(navigation.INavigationPortlet) :
     """A portlet
@@ -105,9 +100,7 @@ class AddForm(navigation.AddForm):
     zope.formlib which fields to display. The create() method actually
     constructs the assignment that is being added.
     """
-    form_fields = form.Fields(INavigationExtendedPortlet)
-    if UberSelectionWidget is not None:
-        form_fields['root'].custom_widget = UberSelectionWidget
+    schema = INavigationExtendedPortlet
 
     def create(self, data):
         return Assignment(name=data.get('name', u""),
@@ -127,9 +120,7 @@ class EditForm(navigation.EditForm):
     This is registered with configure.zcml. The form_fields variable tells
     zope.formlib which fields to display.
     """
-    form_fields = form.Fields(INavigationExtendedPortlet)
-    if UberSelectionWidget is not None:
-        form_fields['root'].custom_widget = UberSelectionWidget
+    schema = INavigationExtendedPortlet
 
 
 class INavigationExtendedQueryBuilder(INavigationQueryBuilder):
