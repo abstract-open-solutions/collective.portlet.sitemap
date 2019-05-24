@@ -24,7 +24,7 @@
                 li_extr_class   python:' navTreeItemInPath' if is_in_path else '';
                 li_folder_class python:' navTreeFolderish' if show_children else '';
                 normalizeString nocall: context/plone_utils/normalizeString;
-                sectionId       string: section-${normalizedId};"
+                sectionId       string: section-${node/normalized_id};"
     tal:attributes="class string:navTreeItem visualNoMarker${li_class}${li_extr_class}${li_folder_class} ${sectionId}"
     tal:condition="python:bottomLevel &lt;= 0 or level &lt;= bottomLevel">
 
