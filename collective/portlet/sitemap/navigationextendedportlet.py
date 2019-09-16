@@ -46,23 +46,47 @@ class Assignment(navigation.Assignment):
         
     title = _(u'Navigation Extended')
     
-    name = u""
+    name = ""
     root = None
+    root_uid = None
     currentFolderOnly = False
     includeTop = False
-    topLevel = 0
+    topLevel = 1
     bottomLevel = 0
+    no_icons = False
+    thumb_scale = None
+    no_thumbs = False
     displayAsSiteMap = True
     siteMapDepth = 2
     
     
-    def __init__(self, name=u"", root=None, currentFolderOnly=False, includeTop=False, topLevel=0, bottomLevel=0, displayAsSiteMap=True, siteMapDepth = 2):
-        self.name = name
-        self.root = root
-        self.currentFolderOnly = currentFolderOnly
-        self.includeTop = includeTop
-        self.topLevel = topLevel
-        self.bottomLevel = bottomLevel     
+    def __init__(
+            self,
+            name="",
+            root_uid=None,
+            currentFolderOnly=False,
+            includeTop=False,
+            topLevel=1,
+            bottomLevel=0,
+            no_icons=False,
+            thumb_scale=None,
+            no_thumbs=False,
+            displayAsSiteMap=True,
+            siteMapDepth = 2
+    ):
+        super(Assignment, self).__init__(
+            name,
+            root_uid,
+            currentFolderOnly,
+            includeTop,
+            topLevel,
+            bottomLevel,
+            no_icons,
+            thumb_scale,
+            no_thumbs,
+            displayAsSiteMap,
+            siteMapDepth
+        )
         self.displayAsSiteMap = displayAsSiteMap    
         self.siteMapDepth = siteMapDepth       
 
@@ -157,8 +181,12 @@ class NavigationExtendedQueryBuilder(object):
             query = {}
 
         # Construct the path query
-
-        rootPath = getNavigationRoot(context, relativeRoot=portlet.root)
+        # Construct the path query
+        root = uuidToObject(portlet.root_uid)
+        if root is not None:
+            rootPath = '/'.join(root.getPhysicalPath())
+        else:
+            rootPath = getNavigationRoot(context)
         currentPath = '/'.join(context.getPhysicalPath())
 
         # If we are above the navigation root, a navtree query would return
