@@ -7,6 +7,7 @@ from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.navigation.navtree import buildFolderTree
+from plone.app.uuid.utils import uuidToObject
 from zope import schema
 from zope.formlib import form
 from Acquisition import aq_inner
