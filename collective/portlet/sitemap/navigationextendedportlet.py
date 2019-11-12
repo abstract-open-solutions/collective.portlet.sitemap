@@ -84,9 +84,7 @@ class Assignment(navigation.Assignment):
             bottomLevel,
             no_icons,
             thumb_scale,
-            no_thumbs,
-            displayAsSiteMap,
-            siteMapDepth
+            no_thumbs
         )
         self.displayAsSiteMap = displayAsSiteMap    
         self.siteMapDepth = siteMapDepth       
@@ -129,7 +127,7 @@ class AddForm(navigation.AddForm):
 
     def create(self, data):
         return Assignment(name=data.get('name', u""),
-                          root=data.get('root', u""),
+                          root_uid=data.get('root_uid', ""),
                           currentFolderOnly=data.get('currentFolderOnly', False),
                           includeTop=data.get('includeTop', False),
                           topLevel=data.get('topLevel', 0),
