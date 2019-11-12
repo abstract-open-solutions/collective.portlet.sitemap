@@ -31,8 +31,6 @@
          name="collective.portlet.sitemap.NavigationExtendedPortlet"
          interface=".navigationextendedportlet.INavigationExtendedPortlet"
          assignment=".navigationextendedportlet.Assignment"
-         view_permission="zope2.View"
-         edit_permission="cmf.ManagePortal"
          renderer=".navigationextendedportlet.Renderer"
          addview=".navigationextendedportlet.AddForm"
          editview=".navigationextendedportlet.EditForm"
