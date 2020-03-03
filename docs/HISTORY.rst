@@ -1,7 +1,11 @@
 Changelog
 =========
 
-1.1.0 (Unreleased)
+1.2.0 (2020-03-03)
+------------------
+* Porting Plone5 [ekulos]
+
+1.1.0 (2014-03-03)
 ------------------
 
 * Added i18n support [keul]
