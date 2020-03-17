@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.1 (unreleased)
+1.2.1 (2020-03-17)
 ------------------
 
 - added portlet permissions - #5660
