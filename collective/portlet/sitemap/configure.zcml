@@ -26,7 +26,12 @@
           the EditForm declaration in navigationextendedportlet.py and delete
           the 'editview' attribute from this statement.
        -->
-
+     
+     <permission
+        id="collective.portlet.sitemap.AddNavigationExtendedPortlet"
+        title="collective.portlet.sitemap: Add navigation extended portlet"
+        />
+    
      <plone:portlet
          name="collective.portlet.sitemap.NavigationExtendedPortlet"
          interface=".navigationextendedportlet.INavigationExtendedPortlet"
@@ -34,6 +39,8 @@
          renderer=".navigationextendedportlet.Renderer"
          addview=".navigationextendedportlet.AddForm"
          editview=".navigationextendedportlet.EditForm"
+         view_permission="zope2.View"
+         edit_permission="collective.portlet.sitemap.AddNavigationExtendedPortlet" 
          />
 
      <adapter factory=".navigationextendedportlet.NavigationExtendedQueryBuilder" /> 

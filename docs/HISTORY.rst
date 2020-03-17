@@ -4,7 +4,8 @@ Changelog
 1.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- added portlet permissions - #5660
+  [ekulos]
 
 
 1.2.0 (2020-03-03)
