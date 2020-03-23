@@ -4,8 +4,8 @@ Changelog
 1.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- hide if root folder is not allowed for user - #5593.
+  [ekulos]
 
 1.2.1 (2020-03-17)
 ------------------

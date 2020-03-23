@@ -14,6 +14,7 @@ from Acquisition import aq_inner
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import utils
 from collective.portlet.sitemap import NavigationExtendedPortletMessageFactory as _
+from plone.app.uuid.utils import uuidToObject
 
 
 class INavigationExtendedPortlet(navigation.INavigationPortlet) :
@@ -98,7 +99,18 @@ class Renderer(navigation.Renderer):
     rendered, and the implicit variable 'view' will refer to an instance
     of this class. Other methods can be added and referenced in the template.
     """
-
+    
+    
+    @memoize
+    def getNavRootPath(self):
+        if self.data.root_uid and uuidToObject(self.data.root_uid):
+            return navigation.getRootPath(
+               self.context,
+               self.data.currentFolderOnly,
+               self.data.topLevel,
+               self.data.root_uid
+            )
+        
     
     @memoize
     def getNavTree(self, _marker=[]):
