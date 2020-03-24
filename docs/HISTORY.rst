@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.2 (unreleased)
+1.2.2 (2020-03-24)
 ------------------
 
 - hide if root folder is not allowed for user - #5593.
