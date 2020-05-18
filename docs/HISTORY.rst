@@ -4,7 +4,8 @@ Changelog
 1.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- added css_class field to describe an addictional class into the template - #5914.
+  [ekulos]
 
 
 1.2.2 (2020-03-24)

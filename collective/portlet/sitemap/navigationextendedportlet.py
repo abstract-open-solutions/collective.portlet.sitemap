@@ -35,7 +35,12 @@ class INavigationExtendedPortlet(navigation.INavigationPortlet) :
             description=_(u"help_site_map_depth",
                           default=u"If previous field is checked set the site map depth"),
             default=2,
-            required=False)            
+            required=False)  
+    
+    css_class = schema.TextLine(title=_(
+            u"Classe CSS"),
+            description=_(u"Se indicata, viene aggiunta al markup, allo stesso livello della classe: portlet."),
+            required=False)
 
 class Assignment(navigation.Assignment):
     """Portlet assignment.
@@ -60,6 +65,7 @@ class Assignment(navigation.Assignment):
     no_thumbs = False
     displayAsSiteMap = True
     siteMapDepth = 2
+    css_class = u''
     
     
     def __init__(
@@ -74,7 +80,8 @@ class Assignment(navigation.Assignment):
             thumb_scale=None,
             no_thumbs=False,
             displayAsSiteMap=True,
-            siteMapDepth = 2
+            siteMapDepth = 2,
+            css_class = u'',
     ):
         super(Assignment, self).__init__(
             name,
@@ -88,7 +95,8 @@ class Assignment(navigation.Assignment):
             no_thumbs
         )
         self.displayAsSiteMap = displayAsSiteMap    
-        self.siteMapDepth = siteMapDepth       
+        self.siteMapDepth = siteMapDepth
+        self.css_class = css_class
 
 
 
@@ -123,8 +131,8 @@ class Renderer(navigation.Renderer):
         strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
 
         return buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
-
     
+    _template = ViewPageTemplateFile('navigation_extended.pt')
     recurse = ViewPageTemplateFile('navigation_extended_recurse.pt')
 
 
@@ -145,7 +153,8 @@ class AddForm(navigation.AddForm):
                           topLevel=data.get('topLevel', 0),
                           bottomLevel=data.get('bottomLevel', 0),
                           displayAsSiteMap=data.get('displayAsSiteMap', True),
-                          siteMapDepth=data.get('siteMapDepth', 2))
+                          siteMapDepth=data.get('siteMapDepth', 2),
+                          css_class=data.get('css_class', u''))
 
 
 
