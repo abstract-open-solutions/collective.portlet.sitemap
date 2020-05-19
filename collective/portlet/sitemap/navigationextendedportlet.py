@@ -50,10 +50,8 @@ class Assignment(navigation.Assignment):
     """
 
     implements(INavigationExtendedPortlet)
-        
-    title = _(u'Navigation Extended')
     
-    name = ""
+    name = u''
     root = None
     root_uid = None
     currentFolderOnly = False
@@ -97,6 +95,15 @@ class Assignment(navigation.Assignment):
         self.displayAsSiteMap = displayAsSiteMap    
         self.siteMapDepth = siteMapDepth
         self.css_class = css_class
+    
+    @property
+    def title(self):
+        """
+        Display the name in portlet mngmt interface
+        """
+        if self.name:
+            return self.name
+        return _(u'Navigation Extended')
 
 
 
