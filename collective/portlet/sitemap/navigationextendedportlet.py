@@ -108,16 +108,23 @@ class Renderer(navigation.Renderer):
     of this class. Other methods can be added and referenced in the template.
     """
     
-    
     @memoize
     def getNavRootPath(self):
-        if self.data.root_uid and uuidToObject(self.data.root_uid):
-            return navigation.getRootPath(
-               self.context,
-               self.data.currentFolderOnly,
-               self.data.topLevel,
-               self.data.root_uid
-            )
+        if self.data.root_uid:
+            if uuidToObject(self.data.root_uid):
+                return navigation.getRootPath(
+                   self.context,
+                   self.data.currentFolderOnly,
+                   self.data.topLevel,
+                   self.data.root_uid
+                )
+            return None
+        return navigation.getRootPath(
+                   self.context,
+                   self.data.currentFolderOnly,
+                   self.data.topLevel,
+                   self.data.root_uid
+                )
         
     
     @memoize
