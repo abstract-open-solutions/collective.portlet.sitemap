@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2.3 (unreleased)
+1.2.3 (2020-06-18)
 ------------------
 
 - added css_class field to describe an addictional class into the template - #5914.
