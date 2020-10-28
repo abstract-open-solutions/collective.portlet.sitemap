@@ -137,7 +137,6 @@ class Renderer(navigation.Renderer):
         if root:
             root_uid = root.UID()
         
-        
         return navigation.getRootPath(
                    self.context,
                    self.data.currentFolderOnly,
