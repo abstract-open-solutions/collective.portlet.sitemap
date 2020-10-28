@@ -16,6 +16,7 @@ setup(name='collective.portlet.sitemap',
         "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 5.x",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
@@ -31,6 +32,7 @@ setup(name='collective.portlet.sitemap',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.app.dexterity',
       ],
       entry_points="""
       # -*- Entry points: -*-

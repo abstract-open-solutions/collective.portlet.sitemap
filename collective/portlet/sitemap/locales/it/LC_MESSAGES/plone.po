@@ -1,0 +1,38 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-11-04 15:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#. Default: "Navigation root"
+#: ../foldernavigationroot.py:29
+msgid "label_portlet_nav_root"
+msgstr "Radice della navigazione"
+
+#. Default: "Navigation root title"
+#: ../foldernavigationroot.py:44
+msgid "label_portlet_nav_root_title"
+msgstr "Titolo della radice di navigazione"
+
+#. Default: "Use as root of the navigation tree"
+#: ../foldernavigationroot.py:33
+msgid "help_portlet_nav_root"
+msgstr "Usa come radice dell'albero di navigazione"
+
+#. Default: "if selected, use this as title of the navigation root, instead of content title"
+#: ../foldernavigationroot.py:48
+msgid "help_portlet_nav_root_title"
+msgstr "Se definito, usa questo come titolo della radice di navigazione al posto del titolo del contenuto"

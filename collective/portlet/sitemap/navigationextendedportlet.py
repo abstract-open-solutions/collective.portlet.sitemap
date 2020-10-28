@@ -1,3 +1,4 @@
+from Acquisition import aq_base, aq_parent
 from zope.interface import Interface
 from zope.interface import implements
 from zope.component import adapts, getMultiAdapter
@@ -15,6 +16,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFPlone import utils
 from collective.portlet.sitemap import NavigationExtendedPortletMessageFactory as _
 from plone.app.uuid.utils import uuidToObject
+from zope.component.hooks import getSite
+from plone.app.layout.navigation.interfaces import INavtreeStrategy
+from Products.CMFPlone.browser.navtree import SitemapNavtreeStrategy
+from zope.interface import implementer
 
 
 class INavigationExtendedPortlet(navigation.INavigationPortlet) :
@@ -126,23 +131,45 @@ class Renderer(navigation.Renderer):
                    self.data.root_uid
                 )
             return None
+        
+        root_uid = self.data.root_uid
+        root = getNavigationFolderObject(self.context, getSite())
+        if root:
+            root_uid = root.UID()
+        
+        
         return navigation.getRootPath(
                    self.context,
                    self.data.currentFolderOnly,
                    self.data.topLevel,
-                   self.data.root_uid
+                   root_uid
                 )
-        
     
+    def heading_link_target(self):
+        root = getNavigationFolderObject(self.context, getSite())
+        if not self.data.root_uid and root:
+            return root.absolute_url()
+        return super(Renderer, self).heading_link_target()
+    
+    def title(self):
+        root = getNavigationFolderObject(self.context, getSite())
+        title = super(Renderer, self).title()
+        if not self.data.root_uid and (root and root.portlet_nav_root_title):
+            title = root.portlet_nav_root_title
+        return title
+        
     @memoize
     def getNavTree(self, _marker=[]):
+        if _marker is None:
+            _marker = []
+            
         context = aq_inner(self.context)
         
         # Special case - if the root is supposed to be pruned, we need to
         # abort here
 
         queryBuilder = getMultiAdapter((context, self.data), INavigationExtendedQueryBuilder)
-        strategy = getMultiAdapter((context, self.data), INavtreeStrategy)
+        strategy = getMultiAdapter((context, self.data), INavtreeExtendedStrategy)
 
         return buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
     
@@ -191,6 +218,7 @@ class INavigationExtendedQueryBuilder(INavigationQueryBuilder):
            navigation structure.
         """    
 
+
 class NavigationExtendedQueryBuilder(object):
     """Build a navtree query based on the settings in navtree_properties
     and those set on the portlet.
@@ -213,10 +241,15 @@ class NavigationExtendedQueryBuilder(object):
             query = customQuery()
         else:
             query = {}
-
+        
         # Construct the path query
-        # Construct the path query
-        root = uuidToObject(portlet.root_uid)
+        root_uid = portlet.root_uid
+        if not root_uid:
+            folderRoot = getNavigationFolderObject(context, getSite())
+            if folderRoot:
+                root_uid = folderRoot.UID()
+        
+        root = uuidToObject(root_uid)
         if root is not None:
             rootPath = '/'.join(root.getPhysicalPath())
         else:
@@ -265,5 +298,45 @@ class NavigationExtendedQueryBuilder(object):
         return self.query
 
 
+class INavtreeExtendedStrategy(INavtreeStrategy):
+    """An object that is used by buildFolderTree() to determine how to
+    construct a navigation tree.
+    """
+    
 
+@implementer(INavtreeExtendedStrategy)
+class NavtreeExtendedStrategy(navigation.NavtreeStrategy):
+    """The navtree strategy used for the default navigation portlet
+    """
+    adapts(Interface, INavigationExtendedPortlet)
+
+    def __init__(self, context, portlet):
+        SitemapNavtreeStrategy.__init__(self, context, portlet)
+
+        # XXX: We can't do this with a 'depth' query to EPI...
+        self.bottomLevel = portlet.bottomLevel or 0
+        
+        root_uid = portlet.root_uid
+        if not root_uid:
+            root = getNavigationFolderObject(self.context, getSite())
+            if root:
+                root_uid = root.UID()
+            
+        self.rootPath = navigation.getRootPath(context,
+                                    portlet.currentFolderOnly,
+                                    portlet.topLevel,
+                                    root_uid)
+            
+            
+def getNavigationFolderObject(context, portal):
+        obj = context
+        while (not getattr(obj, 'portlet_nav_root', False) and
+                aq_base(obj) is not aq_base(portal)):
+            parent = aq_parent(aq_inner(obj))
+            if parent is None:
+                return None
+            obj = parent
+        if aq_base(obj) is aq_base(portal):
+            return None
+        return obj
 

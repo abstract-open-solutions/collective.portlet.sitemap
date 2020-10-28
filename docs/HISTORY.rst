@@ -4,7 +4,8 @@ Changelog
 1.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- added behavior to set a container item as navigation root of portlet like navigation root interface - #6139
+  [ekulos]
 
 
 1.2.3 (2020-06-18)

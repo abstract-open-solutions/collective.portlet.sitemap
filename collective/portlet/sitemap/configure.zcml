@@ -33,16 +33,27 @@
         />
     
      <plone:portlet
-         name="collective.portlet.sitemap.NavigationExtendedPortlet"
-         interface=".navigationextendedportlet.INavigationExtendedPortlet"
-         assignment=".navigationextendedportlet.Assignment"
-         renderer=".navigationextendedportlet.Renderer"
-         addview=".navigationextendedportlet.AddForm"
-         editview=".navigationextendedportlet.EditForm"
-         view_permission="zope2.View"
-         edit_permission="collective.portlet.sitemap.AddNavigationExtendedPortlet" 
-         />
-
-     <adapter factory=".navigationextendedportlet.NavigationExtendedQueryBuilder" /> 
-
+        name="collective.portlet.sitemap.NavigationExtendedPortlet"
+        interface=".navigationextendedportlet.INavigationExtendedPortlet"
+        assignment=".navigationextendedportlet.Assignment"
+        renderer=".navigationextendedportlet.Renderer"
+        addview=".navigationextendedportlet.AddForm"
+        editview=".navigationextendedportlet.EditForm"
+        view_permission="zope2.View"
+        edit_permission="collective.portlet.sitemap.AddNavigationExtendedPortlet" 
+        />
+    
+    <adapter factory=".navigationextendedportlet.NavigationExtendedQueryBuilder" />
+    <adapter factory=".navigationextendedportlet.NavtreeExtendedStrategy"
+             provides=".navigationextendedportlet.INavtreeExtendedStrategy"/>
+     
+    <!-- Folder as ROOT of portlet navigation -->
+    <plone:behavior
+        name="plone.folderasrootnavigationportlet"
+        title="Folder as ROOT of portlet navigation"
+        description="Allow items to be setted as root of navigation portlet"
+        provides=".foldernavigationroot.IRootNavigationPortlet"
+        for="plone.dexterity.interfaces.IDexterityContainer"
+      />
+  
 </configure>

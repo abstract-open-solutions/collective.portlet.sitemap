@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-10 14:05+0000\n"
+"POT-Creation-Date: 2020-10-28 08:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,30 +14,74 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ../configure.zcml:21
 msgid "A navigation portlet that can be displayed as a sitemap"
 msgstr ""
 
-#: ../navigationextendedportlet.py:51
+#: ../configure.zcml:57
+msgid "Allow items to be setted as root of navigation portlet"
+msgstr ""
+
+#: ../navigationextendedportlet.py:45
+msgid "Classe CSS"
+msgstr ""
+
+#: ../configure.zcml:57
+msgid "Folder as ROOT of portlet navigation"
+msgstr ""
+
+#: ../navigationextendedportlet.py:111
 msgid "Navigation Extended"
 msgstr ""
 
+#: ../configure.zcml:21
+msgid "Portlet Navigation Extended"
+msgstr ""
+
+#: ../navigationextendedportlet.py:47
+msgid "Se indicata, viene aggiunta al markup, allo stesso livello della classe: portlet."
+msgstr ""
+
+#: ../foldernavigationroot.py:24
+msgid "Settings"
+msgstr ""
+
 #. Default: "If checked display all folders as a site map"
-#: ../navigationextendedportlet.py:29
+#: ../navigationextendedportlet.py:32
 msgid "help_display_as_site_map"
 msgstr ""
 
+#. Default: "Use as root of the navigation tree"
+#: ../foldernavigationroot.py:33
+msgid "help_portlet_nav_root"
+msgstr ""
+
+#. Default: "if selected, use this as title of the navigation root, instead of content title"
+#: ../foldernavigationroot.py:48
+msgid "help_portlet_nav_root_title"
+msgstr ""
+
 #. Default: "If previous field is checked set the site map depth"
-#: ../navigationextendedportlet.py:37
+#: ../navigationextendedportlet.py:40
 msgid "help_site_map_depth"
 msgstr ""
 
 #. Default: "Display as Site Map"
-#: ../navigationextendedportlet.py:28
+#: ../navigationextendedportlet.py:31
 msgid "label_display_as_site_map"
 msgstr ""
 
-#. Default: "Site map depth"
-#: ../navigationextendedportlet.py:35
-msgid "label_site_map_depth"
+#. Default: "Navigation root"
+#: ../foldernavigationroot.py:29
+msgid "label_portlet_nav_root"
 msgstr ""
 
+#. Default: "Navigation root title"
+#: ../foldernavigationroot.py:44
+msgid "label_portlet_nav_root_title"
+msgstr ""
+
+#. Default: "Site map depth"
+#: ../navigationextendedportlet.py:38
+msgid "label_site_map_depth"
+msgstr ""
