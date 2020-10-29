@@ -8,8 +8,6 @@ from zope.interface import implementer
 from zope.interface import provider
 from zope.interface import alsoProvides, noLongerProvides
 from zope import schema
-from zope.schema._bootstrapinterfaces import IFromBytes
-from zope.schema._bootstrapinterfaces import IFromUnicode
 from zope.interface import Interface
 from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
