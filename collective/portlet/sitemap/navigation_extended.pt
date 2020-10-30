@@ -32,7 +32,7 @@
                          tal:condition="rootIsPortal"
                          i18n:translate="tabs_home">Home</span>
                    <span tal:condition="not:rootIsPortal"
-                         tal:replace="root/Title">Root item title</span>
+                         tal:replace="view/root_title">Root item title</span>
                    </a>
                 </div>
             </li>

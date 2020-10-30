@@ -18,8 +18,8 @@ from plone.app.dexterity import _
 class IRootNavigationPortlet(model.Schema):
     
     model.fieldset(
-        'settings',
-        label=_(u"Settings"),
+        'navigation',
+        label=_(u"Navigation"),
         fields=['portlet_nav_root', 'portlet_nav_root_title']
     )
     

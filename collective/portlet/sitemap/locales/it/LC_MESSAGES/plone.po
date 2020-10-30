@@ -36,3 +36,8 @@ msgstr "Usa come radice dell'albero di navigazione"
 #: ../foldernavigationroot.py:48
 msgid "help_portlet_nav_root_title"
 msgstr "Se definito, usa questo come titolo della radice di navigazione al posto del titolo del contenuto"
+
+#. Default: "Navigation"
+#: ../foldernavigationroot.py:29
+msgid "Navigation"
+msgstr "Navigazione"
