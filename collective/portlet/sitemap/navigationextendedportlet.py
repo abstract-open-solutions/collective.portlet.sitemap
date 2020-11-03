@@ -152,7 +152,7 @@ class Renderer(navigation.Renderer):
     
     def title(self):
         root = getNavigationFolderObject(self.context, getSite())
-        title = super(Renderer, self).title()
+        title = self.data.name
         if not self.data.root_uid and (root and root.portlet_nav_root_title):
             title = root.portlet_nav_root_title
         return title
@@ -166,7 +166,11 @@ class Renderer(navigation.Renderer):
     
     
     def hasName(self):
-        return self.title()
+        title = self.title()
+        if self.data.name:
+            return title
+        if not self.include_top():
+            return title
         
     @memoize
     def getNavTree(self, _marker=[]):
