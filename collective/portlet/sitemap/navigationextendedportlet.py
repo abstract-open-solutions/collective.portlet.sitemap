@@ -153,16 +153,17 @@ class Renderer(navigation.Renderer):
     def title(self):
         root = getNavigationFolderObject(self.context, getSite())
         title = self.data.name
-        if not self.data.root_uid and (root and root.portlet_nav_root_title):
-            title = root.portlet_nav_root_title
+        if getattr(root, 'portlet_nav_root', False):
+            return getattr(root, 'portlet_nav_root_title', title)
         return title
     
     def root_title(self):
         root = self.getNavRoot()
         title = root.Title()
-        if getattr(root, 'portlet_nav_root', False):
-            return getattr(root, 'portlet_nav_root_title', title)
-        return root.Title()
+        override_root = getNavigationFolderObject(self.context, getSite())
+        if getattr(override_root, 'portlet_nav_root', False):
+            return getattr(override_root, 'portlet_nav_root_title', title)
+        return title
     
     
     def hasName(self):
