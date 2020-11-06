@@ -4,6 +4,7 @@
     tal:define="root view/navigation_root">
 
     <header class="portletHeader"
+        tal:condition="view/title"
         tal:attributes="class python:view.hasName() and 'portletHeader' or 'portletHeader hiddenStructure'">
         <a href="#"
            class="tile"
@@ -32,7 +33,9 @@
                          tal:condition="rootIsPortal"
                          i18n:translate="tabs_home">Home</span>
                    <span tal:condition="not:rootIsPortal"
-                         tal:replace="view/root_title">Root item title</span>
+                         tal:define="root_title view/root_title;
+                                     root_title python: root_title if root_title else root.Title();"
+                         tal:replace="root_title">Root item title</span>
                    </a>
                 </div>
             </li>

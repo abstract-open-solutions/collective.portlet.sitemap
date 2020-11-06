@@ -180,10 +180,8 @@ class Renderer(navigation.Renderer):
         
         # Special case - if the root is supposed to be pruned, we need to
         # abort here
-
         queryBuilder = getMultiAdapter((context, self.data), INavigationExtendedQueryBuilder)
         strategy = getMultiAdapter((context, self.data), INavtreeExtendedStrategy)
-
         return buildFolderTree(context, obj=context, query=queryBuilder(), strategy=strategy)
     
     _template = ViewPageTemplateFile('navigation_extended.pt')
@@ -274,19 +272,19 @@ class NavigationExtendedQueryBuilder(object):
         # use a regular depth-1 query in this case.
 
         if portlet.displayAsSiteMap :
-                query['path'] = {'query' : rootPath, 'depth' : portlet.siteMapDepth}    
+            if not currentPath.startswith(rootPath) or portlet.root_uid:
+                query['path'] = {'query' : rootPath, 'depth' : portlet.siteMapDepth}
+            else:
+                query['path'] = {'query' : currentPath, 'navtree' : portlet.siteMapDepth}  
         else :
             if not currentPath.startswith(rootPath):
                 query['path'] = {'query' : rootPath, 'depth' : 1}
             else:
                 query['path'] = {'query' : currentPath, 'navtree' : 1}
                 
-        #print query        
-
         topLevel = portlet.topLevel or navtree_properties.getProperty('topLevel', 0)
         if topLevel and topLevel > 0:
              query['path']['navtree_start'] = topLevel + 1
-
         # XXX: It'd make sense to use 'depth' for bottomLevel, but it doesn't
         # seem to work with EPI.
 
