@@ -275,7 +275,7 @@ class NavigationExtendedQueryBuilder(object):
         
         if portlet.displayAsSiteMap :
             siteMapDepth = portlet.siteMapDepth
-            if topLevel and topLevel >= siteMapDepth:
+            if topLevel and topLevel > 0:
                 siteMapDepth = siteMapDepth + topLevel
                 
             query['path'] = {'query' : rootPath, 'depth' : siteMapDepth}
