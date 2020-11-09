@@ -267,22 +267,24 @@ class NavigationExtendedQueryBuilder(object):
             rootPath = getNavigationRoot(context)
         currentPath = '/'.join(context.getPhysicalPath())
 
+        topLevel = portlet.topLevel or navtree_properties.getProperty('topLevel', 0)
+
         # If we are above the navigation root, a navtree query would return
         # nothing (since we explicitly start from the root always). Hence,
         # use a regular depth-1 query in this case.
-
+        
         if portlet.displayAsSiteMap :
-            if not currentPath.startswith(rootPath) or portlet.root_uid:
-                query['path'] = {'query' : rootPath, 'depth' : portlet.siteMapDepth}
-            else:
-                query['path'] = {'query' : currentPath, 'navtree' : portlet.siteMapDepth}  
+            siteMapDepth = portlet.siteMapDepth
+            if topLevel and topLevel >= siteMapDepth:
+                siteMapDepth = siteMapDepth + topLevel
+                
+            query['path'] = {'query' : rootPath, 'depth' : siteMapDepth}
         else :
             if not currentPath.startswith(rootPath):
                 query['path'] = {'query' : rootPath, 'depth' : 1}
             else:
                 query['path'] = {'query' : currentPath, 'navtree' : 1}
                 
-        topLevel = portlet.topLevel or navtree_properties.getProperty('topLevel', 0)
         if topLevel and topLevel > 0:
              query['path']['navtree_start'] = topLevel + 1
         # XXX: It'd make sense to use 'depth' for bottomLevel, but it doesn't
