@@ -272,7 +272,6 @@ class NavigationExtendedQueryBuilder(object):
         # If we are above the navigation root, a navtree query would return
         # nothing (since we explicitly start from the root always). Hence,
         # use a regular depth-1 query in this case.
-        
         if portlet.displayAsSiteMap :
             siteMapDepth = portlet.siteMapDepth
             if topLevel and topLevel > 0:
@@ -343,7 +342,7 @@ class NavtreeExtendedStrategy(navigation.NavtreeStrategy):
             
 def getNavigationFolderObject(context, portal):
         obj = context
-        while (not getattr(obj, 'portlet_nav_root', False) and
+        while (not getattr(aq_base(obj), 'portlet_nav_root', False) and
                 aq_base(obj) is not aq_base(portal)):
             parent = aq_parent(aq_inner(obj))
             if parent is None:
