@@ -267,7 +267,7 @@ class NavigationExtendedQueryBuilder(object):
             rootPath = getNavigationRoot(context)
         currentPath = '/'.join(context.getPhysicalPath())
 
-        topLevel = portlet.topLevel or navtree_properties.getProperty('topLevel', 0)
+        topLevel = portlet.topLevel
 
         # If we are above the navigation root, a navtree query would return
         # nothing (since we explicitly start from the root always). Hence,
