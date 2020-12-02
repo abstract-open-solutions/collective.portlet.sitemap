@@ -122,17 +122,23 @@ class Renderer(navigation.Renderer):
     
     @memoize
     def getNavRootPath(self):
-        if self.data.root_uid:
-            if uuidToObject(self.data.root_uid):
+        topLevel = self.data.topLevel
+        root_uid = self.data.root_uid
+            
+        if root_uid:
+            if uuidToObject(root_uid):
                 return navigation.getRootPath(
                    self.context,
                    self.data.currentFolderOnly,
-                   self.data.topLevel,
-                   self.data.root_uid
+                   topLevel,
+                   root_uid
                 )
             return None
         
-        root_uid = self.data.root_uid
+        override_topLevel = getNavigationTopLevelObject(self.context, getSite())
+        if override_topLevel:
+            topLevel = override_topLevel.portlet_nav_topLevel
+            
         root = getNavigationFolderObject(self.context, getSite())
         if root:
             root_uid = root.UID()
@@ -140,7 +146,7 @@ class Renderer(navigation.Renderer):
         return navigation.getRootPath(
                    self.context,
                    self.data.currentFolderOnly,
-                   self.data.topLevel,
+                   topLevel,
                    root_uid
                 )
     
@@ -255,7 +261,12 @@ class NavigationExtendedQueryBuilder(object):
         
         # Construct the path query
         root_uid = portlet.root_uid
+        topLevel = portlet.topLevel
+        
         if not root_uid:
+            override_topLevel = getNavigationTopLevelObject(self.context, getSite())
+            if override_topLevel:
+                topLevel = override_topLevel.portlet_nav_topLevel
             folderRoot = getNavigationFolderObject(context, getSite())
             if folderRoot:
                 root_uid = folderRoot.UID()
@@ -267,8 +278,7 @@ class NavigationExtendedQueryBuilder(object):
             rootPath = getNavigationRoot(context)
         currentPath = '/'.join(context.getPhysicalPath())
 
-        topLevel = portlet.topLevel
-
+            
         # If we are above the navigation root, a navtree query would return
         # nothing (since we explicitly start from the root always). Hence,
         # use a regular depth-1 query in this case.
@@ -329,26 +339,53 @@ class NavtreeExtendedStrategy(navigation.NavtreeStrategy):
         self.bottomLevel = portlet.bottomLevel or 0
         
         root_uid = portlet.root_uid
+        topLevel = portlet.topLevel
+        
         if not root_uid:
+            override_topLevel = getNavigationTopLevelObject(self.context, getSite())
+            if override_topLevel:
+                topLevel = override_topLevel.portlet_nav_topLevel
             root = getNavigationFolderObject(self.context, getSite())
             if root:
                 root_uid = root.UID()
+        
             
         self.rootPath = navigation.getRootPath(context,
                                     portlet.currentFolderOnly,
-                                    portlet.topLevel,
+                                    topLevel,
                                     root_uid)
             
-            
-def getNavigationFolderObject(context, portal):
-        obj = context
-        while (not getattr(aq_base(obj), 'portlet_nav_root', False) and
-                aq_base(obj) is not aq_base(portal)):
-            parent = aq_parent(aq_inner(obj))
-            if parent is None:
-                return None
-            obj = parent
-        if aq_base(obj) is aq_base(portal):
-            return None
-        return obj
 
+def getNavigationFolderObject(context, portal):
+    return getOverrideObject(context, portal, 'portlet_nav_root')
+
+
+def getNavigationTopLevelObject(context, portal):
+    return getOverrideObject(context, portal, 'portlet_nav_topLevel')
+    
+    
+def getOverrideObject(context, portal, attribute, forceReturn=False):
+    
+    def check_value(value, forceReturn=False):
+        if value is None:
+            return None
+        if forceReturn:
+            return True
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, basestring):
+            return True
+        if isinstance(value, int):
+            return True
+        
+    obj = context
+    value = getattr(aq_base(obj), attribute, None)
+    while (not check_value(value, forceReturn) and aq_base(obj) is not aq_base(portal)):
+        parent = aq_parent(aq_inner(obj))
+        if parent is None:
+            return None
+        obj = parent
+        value = getattr(aq_base(obj), attribute, None)
+    if aq_base(obj) is aq_base(portal):
+        return None
+    return obj

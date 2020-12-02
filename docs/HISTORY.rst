@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - added behavior to set a container item as navigation root of portlet like navigation root interface - #6139
+- added topLevel override - #6205
   [ekulos]
 
 
